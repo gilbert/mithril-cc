@@ -1,0 +1,38 @@
+{
+  "name": "mithril-cc",
+  "version": "0.9.0",
+  "description": "An opinionated pleasure on writing Mithril components",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "index.js",
+    "index.ts",
+    "index.d.ts",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gilbert/mithril-cc.git"
+  },
+  "keywords": [
+    "mithril"
+  ],
+  "author": "gilbert",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gilbert/mithril-cc/issues"
+  },
+  "homepage": "https://github.com/gilbert/mithril-cc#readme",
+  "peerDependencies": {
+    "mithril": "2.x"
+  },
+  "devDependencies": {
+    "@types/mithril": "^2.0.7",
+    "esbuild": "^0.10.0",
+    "typescript": "^4.2.3"
+  }
+}
