@@ -123,7 +123,7 @@ import {cc, uniques} from 'mithril-cc'
 const Greeter = cc(function($attrs){
   let rank = 0
   let renderCount = -1
-  this.unsub = $attrs.map(a => a.name).map(m.uniques()).map(n => rank++)
+  this.unsub = $attrs.map(a => a.name).map(uniques()).map(n => rank++)
   this.unsub = $attrs.map(() => renderCount++)
 
   return (attrs) => (
