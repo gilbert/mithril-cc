@@ -33,6 +33,17 @@ If you use a CDN, mithril-cc will be available via `m.cc`, `m.ccs`, etc.
 <script src="https://unpkg.com/mithril-cc"></script>
 ```
 
+### TypeScript
+
+For type inference, simply parameterize your `cc` calls:
+
+```ts
+type Attrs = {
+  initialCount: number
+}
+const Counter = cc<Attrs>(/* ... */)
+```
+
 ## Learn by Example
 
 - [Simple counter](#user-content-simple-counter)
