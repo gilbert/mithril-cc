@@ -24,7 +24,7 @@ In your component files:
 import {cc} from 'mithril-cc'
 ```
 
-### Usind a CDN
+### Using a CDN
 
 If you use a CDN, mithril-cc will be available via `m.cc`, `m.ccs`, etc.
 
