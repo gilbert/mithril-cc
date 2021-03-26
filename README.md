@@ -30,6 +30,7 @@ If you use a CDN, mithril-cc will be available via `m.cc`, `m.ccs`, etc.
 
 ```html
 <script src="https://unpkg.com/mithril/mithril.js"></script>
+<script src="https://unpkg.com/mithril/stream/stream.js"></script>
 <script src="https://unpkg.com/mithril-cc"></script>
 ```
 
