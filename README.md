@@ -248,3 +248,11 @@ const Greeter = ccs(attrs => (
   m('p', `Hello, ${attrs.name}!`)
 )
 ```
+
+## Developing
+
+```bash
+npm run build
+cd pkg
+npm publish
+```
