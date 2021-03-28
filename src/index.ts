@@ -107,7 +107,7 @@ function remover() {
 //
 // Misc helpers
 //
-export function uniques<T>() {
+export function uniques<T>(eq?: (a: T, b: T) => any) {
   let first = true
   let previous: T | undefined
   return (value: T) => {
@@ -116,7 +116,7 @@ export function uniques<T>() {
       previous = value
       return value
     }
-    else if (value === previous) {
+    else if (eq ? eq(value, previous!) : value === previous) {
       return Stream.SKIP
     }
     else {
