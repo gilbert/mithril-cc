@@ -1,6 +1,6 @@
 {
   "name": "mithril-cc",
-  "version": "0.9.8",
+  "version": "0.9.9",
   "description": "An opinionated library for writing Mithril components",
   "scripts": {
     "build": "tsc && rm -rf pkg && pika-pack build && sed -i '' -e 's/global.MithrilCC = {}/global.m/' pkg/dist-umd/index.js && sed -i '' -e 's/global.Stream/global.m.stream/' pkg/dist-umd/index.js",
