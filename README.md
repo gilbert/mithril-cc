@@ -213,7 +213,7 @@ const Ticker = cc(function(){
 
 Because CC's `this` has everything you need to manage a component, you can abstract setup and teardown behavior like you would using React hooks.
 
-For example, we can refactor the [MouseEvents](#user-content-addeventlistener) example into its own function:
+For example, we can refactor the [MouseEvents example](#user-content-addeventlistener) into its own function:
 
 ```js
 import {cc} from 'mithril-cc'
