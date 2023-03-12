@@ -252,7 +252,7 @@ const Greeter = ccs(attrs => (
 
 ### Island Components
 
-Mithril's best feature is how it recalculates the entire app tree when it redraws. This makes your dev life easy by reducing a significant amonut of boilerplate code, and leaving less room for out-of-sync state-to-view bugs.
+Mithril's best feature is how it recalculates the entire app tree when it redraws. This makes your dev life easy by reducing a significant amonut of boilerplate code, and leaving less room for out-of-sync state-to-view bugs, all while having great performance 98% of the time.
 
 However, [in rare cases](https://mithril.js.org/lifecycle-methods.html#avoid-premature-optimizations) you may need to optimize for fewer redraws to fix a poor performance behavior. Islands are components that only redraw themselves instead of the whole app tree.
 
