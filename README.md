@@ -47,16 +47,17 @@ const Counter = cc<Attrs>(/* ... */)
 
 ## Learn by Example
 
-- [Simple counter](#user-content-simple-counter)
-- [View Attrs](#user-content-view-attrs)
-- [Component Setup](#user-content-component-setup)
-- [Reacting to Attrs Changes](#user-content-reacting-to-attrs-changes)
-- [Unsubscribe](#user-content-unsubscribe)
-- [Lifecycle Methods](#user-content-lifecycle-methods)
-- [`addEventListener`](#user-content-addeventlistener)
-- [`setTimeout` and `setInterval`](#user-content-settimeout-and-setinterval)
-- [React Hooks-like Abstractions](#user-content-react-hooks-like-abstractions)
-- [Shorthand Components](#user-content-shorthand-components)
+- [Simple counter](#simple-counter)
+- [View Attrs](#view-attrs)
+- [Component Setup](#component-setup)
+- [Reacting to Attrs Changes](#reacting-to-attrs-changes)
+- [Unsubscribe](#unsubscribe)
+- [Lifecycle Methods](#lifecycle-methods)
+- [`addEventListener`](#addeventlistener)
+- [`setTimeout` and `setInterval`](#settimeout-and-setinterval)
+- [React Hooks-like Abstractions](#react-hooks-like-abstractions)
+- [Shorthand Components](#shorthand-components)
+- [Island Components](#island-components)
 
 ### Simple Counter
 
@@ -248,6 +249,35 @@ const Greeter = ccs(attrs => (
   m('p', `Hello, ${attrs.name}!`)
 )
 ```
+
+### Island Components
+
+Mithril's best feature is how it recalculates the entire app tree when it redraws. This makes your dev life easy by reducing a significant amonut of boilerplate code, and leaving less room for out-of-sync state-to-view bugs.
+
+However, [in rare cases](https://mithril.js.org/lifecycle-methods.html#avoid-premature-optimizations) you may need to optimize for fewer redraws to fix a poor performance behavior. Islands are components that only redraw themselves instead of the whole app tree.
+
+Islands are not necessary unless your app is rendering with a high redraw rate, such as (maybe) render-on-keystroke.
+
+Logistics-wise, YOUR COMPONENT MUST ONLY HAVE A SINGLE, STABLE ROOT ELEMENT. You cannot, for example, return an array of elements from your component, or return an element sometimes and null other times.
+
+This should be used as sparingly as possible. When used, your component should ONLY modify its own state, and not any state read by other components outside your component's descendants.
+
+With that said, here is how to use it:
+
+```js
+import m from 'mithril'
+import {ccIsland} from 'mithril-cc'
+
+const Counter = ccIsland(function(){
+  let n = 0
+  return () => [
+    m('p', 'Count: ', n),
+    m('button', { onclick: () => n++ }, 'Inc')
+  ]
+})
+```
+
+As you can see, your component behaves like any other cc, given the caveats described above.
 
 ## Developing
 

@@ -125,3 +125,53 @@ export function uniques<T>(eq?: (a: T, b: T) => any) {
     }
   }
 }
+
+/**
+ * Islands are components that only redraw themselves instead of the whole app tree.
+ * Not necessary unless doing something with a high redraw rate, such as (maybe) render-on-keystroke.
+ *
+ * YOUR COMPONENT MUST ONLY HAVE A SINGLE, STABLE ROOT ELEMENT. You cannot
+ * return an array of elements from your component.
+ *
+ * This should be used as sparingly as possible. When used, component should ONLY modify its own state,
+ * and not the state of other components outside its own descendants.
+ * */
+export function makeIsland<Attrs>(Component: m.FactoryComponent<Attrs>): m.FactoryComponent<Attrs> {
+  return (vnode) => {
+    const component = Component(vnode)
+
+    let _dom: Element
+    let redraw = () => {
+      m.render(
+        _dom,
+        component.view(vnode),
+        // @ts-ignore - m.render does in fact take redraw as a third parameter
+        redraw,
+      )
+    }
+
+    return {
+      ...component,
+      oncreate: (vnode) => {
+        _dom = vnode.dom
+        redraw()
+        component.oncreate?.(vnode)
+      },
+      view: () => { _dom && redraw(); return m('div') }
+    }
+  }
+}
+
+/**
+ * Islands are components that only redraw themselves instead of the whole app tree.
+ * Not necessary unless doing something with a high redraw rate, such as (maybe) render-on-keystroke.
+ *
+ * YOUR COMPONENT MUST ONLY HAVE A SINGLE, STABLE ROOT ELEMENT. You cannot
+ * return an array of elements from your component.
+ *
+ * This should be used as sparingly as possible. When used, component should ONLY modify its own state,
+ * and not the state of other components outside its own descendants.
+ * */
+export const ccIsland: typeof cc = function<A>(fn: ComponentDef<A>) {
+  return makeIsland(cc<A>(fn))
+}
